@@ -1,5 +1,3 @@
-import React from "react";
-import useJobs from "../hooks/useJobs";
 import JobCard from "./JobCard";
 
 const JobGrid = ({jobs = [], loading, error}) => {

@@ -3,19 +3,16 @@
   const SavedJobContext = createContext();
 
   export const SavedJobProvider = ({ children }) => {
-    const [savedJobs, setSavedJobs] = useState([]);
-
-    useEffect(() => {
+    
+    const [savedJobs, setSavedJobs] = useState(()=>{
+      try{
       const stored = localStorage.getItem("savedJobs");
-      if (stored) {
-        try {
-          setSavedJobs(JSON.parse(stored));
-        } catch (err) {
-          console.error("Failed to load saved jobs from localStorage", err);
-          localStorage.removeItem("savedJobs");
-        }
-      }
-    }, []);
+      return stored ? JSON.parse(stored) : [];
+    } catch (error) {
+      console.log("Invalid LocalStorage data:", error)
+      return [];
+    }
+    });
 
     useEffect(() => {
       localStorage.setItem("savedJobs", JSON.stringify(savedJobs));
@@ -38,7 +35,6 @@
 
     const clearAllSavedJobs = () => {
       setSavedJobs([]);
-      localStorage.removeItem("savedJobs");
     };
 
     return (
