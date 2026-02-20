@@ -6,7 +6,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { savedCount} = useSavedJobs();
   return (
-    <div className="h-16 bg-slate-900 text-white px-4 xl:px-40 flex justify-between items-center">
+    <div className="h-16 bg-slate-900 text-white px-4 xl:px-40 flex justify-between items-center sticky top-0 z-10">
       <div className="left flex text-2xl font-mono items-center">
         <div className="l px-2 py-0.5 bg-blue-400 rounded-lg mr-2 text-lg font-sans font-bold">
           J
